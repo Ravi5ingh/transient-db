@@ -1,0 +1,7 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fde78027_002D6dbd_002D443c_002Daab8_002Da8be78d5e198/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::5027CD02-8F3A-46C7-8710-DAE3C29F1547::net6.0::TransientDb.IntegrationTests.TransientDbTests.Create_MultipleInvokes_CreatesDifferentDbEachTime&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5027CD02-8F3A-46C7-8710-DAE3C29F1547::net6.0::TransientDb.IntegrationTests.TransientDbTests.Create_SimpleCase_CleansUpDbOnDispose&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
