@@ -3,15 +3,26 @@ using Dapper;
 
 namespace TransientDb;
 
+/// <summary>
+/// A connection to an instance of TransientDb. This is a disposable class which will take the DB down with it when disposed of
+/// </summary>
 public class TransientDbConnection : IDisposable
 {
+    /// <summary>
+    /// The underlying SQL connection
+    /// </summary>
     public SqlConnection Connection { get; }
 
-    public TransientDbConnection(string connectionString)
+    /// <summary>
+    /// .ctor
+    /// </summary>
+    /// <param name="connectionString">The connection string to the Transient DB</param>
+    internal TransientDbConnection(string connectionString)
     {
         Connection = new SqlConnection(connectionString);
     }
 
+    /// <inheritdoc />
     public void Dispose()
     {
         var closedConnectionString = Connection.ConnectionString;

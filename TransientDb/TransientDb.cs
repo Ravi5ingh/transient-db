@@ -5,8 +5,19 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace TransientDb;
 
+/// <summary>
+/// TransientDb is a lightweight, dynamic, runtime, code-only database which comes in handy whenever you need quick setup and teardown of an ephemeral database 
+/// with a controlled starting state specified by SQL scripts. It is based on MS SQL Local DB
+/// </summary>
 public static class TransientDb
 {
+    /// <summary>
+    /// Create a transient database, apply the SQL in the files provided, and return a disposable connection to the DB.
+    /// Underlying DB is a MS SQL Local DB
+    /// </summary>
+    /// <param name="sqlScripts">SQL scripts</param>
+    /// <returns>The connection to the transient db (whose disposal will tear down the transient db along with it)</returns>
+    /// <exception cref="Exception">Throws exceptions depending on the contents of the scripts</exception>
     public static TransientDbConnection Create(params FileInfo[] sqlScripts)
     {
         // create db name
