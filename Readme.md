@@ -6,7 +6,7 @@ TransientDb is a lightweight, dynamic, runtime, code-only database which comes i
 - Install the TransientDb nuget package from: [NOT YET PUBLISHED]
 
 ## Usage
-TransientDb can be used to create and destroy local databases on the fly via SQL scripts. This is a very powerful concept when you want to create fully integrate tested code (all the way down the DB level) without having to share databases (which is un-controlled and un-scientific)
+TransientDb can be used to create and destroy local databases on the fly via SQL scripts. This is a very powerful concept when you want to create fully integration tested code (all the way down the DB level) without having to share databases (which is un-controlled and un-scientific)
 
 The following code shows an example:
 
