@@ -39,8 +39,11 @@ internal static class Core
     /// <returns>The database name</returns>
     internal static string GetDatabaseNameFromConnectionString(string connectionString)
     {
-        var segments = connectionString.Split(";");
-        return segments.First(seg => seg.StartsWith("Database")).Substring(9);
+        return connectionString
+            .Split(";")
+            .First(seg => seg
+                .StartsWith("Database"))
+            .Substring(9);
     }
     
     /// <summary>
@@ -50,7 +53,9 @@ internal static class Core
     /// <returns>A machine level SQL connection string</returns>
     internal static string ConvertToMachineLevelConnectionString(string connectionString)
     {
-        return string.Join(";", connectionString.Split(";").Where(seg => !seg.Contains("Database")));
+        return string.Join(";", connectionString
+            .Split(";")
+            .Where(seg => !seg.Contains("Database")));
     }
 
     /// <summary>
