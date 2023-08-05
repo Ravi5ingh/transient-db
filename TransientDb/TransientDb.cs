@@ -11,6 +11,8 @@ namespace TransientDb;
 /// </summary>
 public static class TransientDb
 {
+    private static string DefaultTransientDbMdfFileLocation => "C:\\TransientDbs";
+    
     /// <summary>
     /// Create a transient database, apply the SQL in the files provided, and return a disposable connection to the DB.
     /// Underlying DB is a MS SQL Local DB
@@ -24,10 +26,7 @@ public static class TransientDb
         var dbName = $"{Core.TransientDbNamePrefix}_{Guid.NewGuid().ToString().Substring(0, 8)}";
 
         // create db
-        using (var tempConnection = new SqlConnection(Core.DefaultLocalDbConnectionString))
-        {
-            tempConnection.Execute($"create database {dbName}");
-        }
+        CreateDatabase(Core.DefaultLocalDbConnectionString, dbName);
         
         // create connection to return
         var transientDbConnection = new TransientDbConnection($"{Core.DefaultLocalDbConnectionString};Database={dbName};Pooling=false");
@@ -61,5 +60,20 @@ public static class TransientDb
         }
 
         return transientDbConnection;
+    }
+
+    private static void CreateDatabase(string instanceConnectionString, string dbName)
+    {
+        // Ensure we have a place to put the MDF files
+        if (!Directory.Exists(DefaultTransientDbMdfFileLocation))
+        {
+            Directory.CreateDirectory(DefaultTransientDbMdfFileLocation);
+        }
+        
+        // Create DB
+        using (var tempConnection = new SqlConnection(instanceConnectionString))
+        {
+            tempConnection.Execute($"create database {dbName} on (name='test', filename='{DefaultTransientDbMdfFileLocation}\\{dbName}.mdf')");
+        }
     }
 }
