@@ -2,9 +2,9 @@
 <package >
   <metadata>
     <id>TransientDb</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <title>TransientDb</title>
-    <authors>Singh</authors>
+    <authors>Ravi Singh</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <!-- <icon>icon.png</icon> -->
@@ -12,8 +12,22 @@
     <description>
       TransientDb is a lightweight, dynamic, runtime, code-only database which comes in handy whenever you need quick setup and teardown of an ephemeral database with a controlled starting state specified by SQL scripts. It is based on MS SQL Local DB.
     </description> 
-    <releaseNotes>First Release</releaseNotes>
+    <releaseNotes>Transient DB MDF files are now created in dedicated directory + namespace changes + added readme</releaseNotes>
     <copyright>Copyright © Ravi Singh 2023</copyright>
     <tags>Temporary Database SQL Transient Ephemeral Runtime Integration Testing</tags>
+    <dependencies>
+      <dependency id="Dapper" version="2.0.123" />
+      <dependency id="Microsoft.SqlServer.Compact" version="4.0.8876.1" />
+      <dependency id="Microsoft.SqlServer.ConnectionInfo.dll" version="1.0.1" />
+      <dependency id="Microsoft.SqlServer.Management.Sdk.Sfc.dll" version="1.0.1" />
+      <dependency id="Microsoft.SqlServer.Smo.dll" version="1.0.1" />
+      <dependency id="Microsoft.SqlServer.SqlEnum.dll" version="1.0.1" />
+      <dependency id="Microsoft.SqlServer.SqlManagementObjects" version="161.47027.0" />
+      <dependency id="System.Data.SqlClient" version="4.8.5" />
+    </dependencies>
   </metadata>
+  <files>
+    <file src="bin\Release\net6.0\*.dll" target="lib\net6.0" />
+    <file src="bin\Release\net6.0\Readme.md" target="" />
+  </files>
 </package>

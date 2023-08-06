@@ -1,7 +1,7 @@
 using System.Data.SqlClient;
 using Dapper;
 
-namespace TransientDb;
+namespace TransientDatabase;
 
 /// <summary>
 /// A connection to an instance of TransientDb. This is a disposable class which will take the DB down with it when disposed of

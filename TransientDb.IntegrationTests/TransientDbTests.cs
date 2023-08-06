@@ -5,7 +5,7 @@ using System.Linq;
 using Shouldly;
 using Xunit;
 
-namespace TransientDb.IntegrationTests
+namespace TransientDatabase.IntegrationTests
 {
     public class TransientDbTests : IDisposable
     {
@@ -35,7 +35,7 @@ namespace TransientDb.IntegrationTests
         public void Create_MultipleInvokes_CreatesDifferentDbEachTime()
         {
             var script = new FileInfo("TransientDbTests.sql");
-            
+
             using(var transientDbConnection1 = TransientDb.Create(script))
             using(var transientDbConnection2 = TransientDb.Create(script))
             using(var transientDbConnection3 = TransientDb.Create(script))

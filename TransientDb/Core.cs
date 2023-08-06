@@ -1,7 +1,7 @@
 using System.Data.SqlClient;
 using Dapper;
 
-namespace TransientDb;
+namespace TransientDatabase;
 
 /// <summary>
 /// Core functionality used by the TransientDb library

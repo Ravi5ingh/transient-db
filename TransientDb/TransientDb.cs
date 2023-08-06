@@ -3,7 +3,7 @@ using Dapper;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace TransientDb;
+namespace TransientDatabase;
 
 /// <summary>
 /// TransientDb is a lightweight, dynamic, runtime, code-only database which comes in handy whenever you need quick setup and teardown of an ephemeral database 

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransientDb", "TransientDb\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransientDb.IntegrationTests", "TransientDb.IntegrationTests\TransientDb.IntegrationTests.csproj", "{5027CD02-8F3A-46C7-8710-DAE3C29F1547}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetClient", "NugetClient\NugetClient.csproj", "{03CF3BC8-F55F-465E-9B36-88586B5121DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5027CD02-8F3A-46C7-8710-DAE3C29F1547}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5027CD02-8F3A-46C7-8710-DAE3C29F1547}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5027CD02-8F3A-46C7-8710-DAE3C29F1547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03CF3BC8-F55F-465E-9B36-88586B5121DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03CF3BC8-F55F-465E-9B36-88586B5121DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03CF3BC8-F55F-465E-9B36-88586B5121DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03CF3BC8-F55F-465E-9B36-88586B5121DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

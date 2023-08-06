@@ -1,0 +1,1 @@
+﻿nuget pack ./TransientDb.nuspec

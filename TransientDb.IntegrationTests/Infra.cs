@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
 
-namespace TransientDb.IntegrationTests;
+namespace TransientDatabase.IntegrationTests;
 
 public static class Infra
 {
