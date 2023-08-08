@@ -3,10 +3,12 @@ TransientDb is a lightweight, dynamic, runtime, code-only database which comes i
 
 ## Installing
 - Ensure you have MS SQL Local DB. This is an optional install within SQL Express which you can install from: [SQL Server Express LocalDB - SQL Server | Microsoft Learn](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver16)
-- Install the TransientDb nuget package from: [NOT YET PUBLISHED]
+- Install the TransientDb nuget package from [here](https://www.nuget.org/packages/TransientDb/)
 
 ## Usage
-TransientDb can be used to create and destroy local databases on the fly via SQL scripts. This is a very powerful concept when you want to create fully integration tested code (all the way down the DB level) without having to share databases (which is un-controlled and un-scientific)
+TransientDb can be used to create and destroy local databases on the fly via SQL scripts. This is a very powerful concept when you want to create fully integration tested code (all the way down the DB level) without having to share databases (which is un-controlled and un-scientific) or create convoluted infrastructure to emulate an in-memory database.
+
+It is ORM agnostic because its an actual database!
 
 The following code shows an example:
 
@@ -17,7 +19,7 @@ The following code shows an example:
 		// Transient database starts existing here
 		
 		// Dapper integration is seamless
-		var dapperPerson = transientDbConnection.Connection.Query<Person>("select * from dbo.Persons where Id = 3).FirstOrDefault()
+		var dapperPerson = transientDbConnection.Connection.Query<Person>("select * from dbo.Persons where Id = 3").FirstOrDefault()
 		
 		// Create and point your EF DB context to your transient db
 		var myEfDbContext = new CompanyContext(transientDbConnection.Connection.ConnectionString);
