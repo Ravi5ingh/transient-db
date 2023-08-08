@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>TransientDb</id>
-    <version>1.2.0</version>
+    <version>1.4.0</version>
     <title>TransientDb</title>
     <authors>Ravi Singh</authors>
     <readme>docs\Readme.md</readme>
@@ -13,7 +13,7 @@
     <description>
       TransientDb is a lightweight, dynamic, runtime, code-only database which comes in handy whenever you need quick setup and teardown of an ephemeral database with a controlled starting state specified by SQL scripts. It is based on MS SQL Local DB.
     </description> 
-    <releaseNotes>Added Icon</releaseNotes>
+    <releaseNotes>Added ability to retain transient db after connection cleanup</releaseNotes>
     <copyright>Copyright © Ravi Singh 2023</copyright>
     <tags>Temporary Database SQL Transient Ephemeral Runtime Integration Testing</tags>
     <dependencies>

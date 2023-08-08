@@ -1,4 +1,6 @@
+using System;
 using System.Data.SqlClient;
+using System.IO;
 using Dapper;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
@@ -17,10 +19,10 @@ public static class TransientDb
     /// Create a transient database, apply the SQL in the files provided, and return a disposable connection to the DB.
     /// Underlying DB is a MS SQL Local DB
     /// </summary>
-    /// <param name="sqlScripts">SQL scripts</param>
+    /// <param name="sqlScriptFilePaths">SQL script file paths</param>
     /// <returns>The connection to the transient db (whose disposal will tear down the transient db along with it)</returns>
     /// <exception cref="Exception">Throws exceptions depending on the contents of the scripts</exception>
-    public static TransientDbConnection Create(params FileInfo[] sqlScripts)
+    public static TransientDbConnection Create(params string[] sqlScriptFilePaths)
     {
         // create db name
         var dbName = $"{Core.TransientDbNamePrefix}_{Guid.NewGuid().ToString().Substring(0, 8)}";
@@ -37,11 +39,11 @@ public static class TransientDb
             var svrConnection = new ServerConnection(sqlConnection);
             var server = new Server(svrConnection);
 
-            foreach (var script in sqlScripts)
+            foreach (var scriptFilePath in sqlScriptFilePaths)
             {
                 try
                 {
-                    server.ConnectionContext.ExecuteNonQuery(File.ReadAllText(script.FullName));
+                    server.ConnectionContext.ExecuteNonQuery(File.ReadAllText(scriptFilePath));
                 }
                 catch (Exception e)
                 {
@@ -50,7 +52,7 @@ public static class TransientDb
                         : string.Empty;
 
                     throw new Exception(
-                        $"There was a problem running the SQL script: ({script.FullName}).\n\nProblem: {e.Message}\n\n{sqlExecutionError}\n\n",
+                        $"There was a problem running the SQL script: ({scriptFilePath}).\n\nProblem: {e.Message}\n\n{sqlExecutionError}\n\n",
                         e);
                 }
             }

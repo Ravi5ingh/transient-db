@@ -1,3 +1,4 @@
+using System;
 using System.Data.SqlClient;
 using Dapper;
 
@@ -8,6 +9,8 @@ namespace TransientDatabase;
 /// </summary>
 public class TransientDbConnection : IDisposable
 {
+    private bool _disposeOnCleanup;
+    
     /// <summary>
     /// The underlying SQL connection
     /// </summary>
@@ -20,34 +23,45 @@ public class TransientDbConnection : IDisposable
     internal TransientDbConnection(string connectionString)
     {
         Connection = new SqlConnection(connectionString);
+        _disposeOnCleanup = true;
+    }
+
+    public TransientDbConnection DontDisposeOnCleanup()
+    {
+        _disposeOnCleanup = false;
+
+        return this;
     }
 
     /// <inheritdoc />
     public void Dispose()
     {
-        var closedConnectionString = Connection.ConnectionString;
-        Connection.Dispose();
-
-        var thisDbName = string.Empty;
-
-        try
+        if (_disposeOnCleanup)
         {
-            // Close current connection and elevate connection to machine level to close database we were pointing at
-            thisDbName = Core.GetDatabaseNameFromConnectionString(closedConnectionString);
-            var machineLevelConnectionString = Core.ConvertToMachineLevelConnectionString(closedConnectionString);
+            var closedConnectionString = Connection.ConnectionString;
+            Connection.Dispose();
 
-            using (var sqlConnection = new SqlConnection(machineLevelConnectionString))
+            var thisDbName = string.Empty;
+
+            try
             {
-                sqlConnection.Execute(Core.DropDatabaseCommand(thisDbName));
+                // Close current connection and elevate connection to machine level to close database we were pointing at
+                thisDbName = Core.GetDatabaseNameFromConnectionString(closedConnectionString);
+                var machineLevelConnectionString = Core.ConvertToMachineLevelConnectionString(closedConnectionString);
+
+                using (var sqlConnection = new SqlConnection(machineLevelConnectionString))
+                {
+                    sqlConnection.Execute(Core.DropDatabaseCommand(thisDbName));
+                }
             }
-        }
-        catch (SqlException sqlException)
-        {
-            // If the DB hasn't been cleaned up by something else, only then throw
-            if (Core.GetAllTransientDbs().Contains(thisDbName))
+            catch (SqlException sqlException)
             {
-                throw sqlException;
-            }
+                // If the DB hasn't been cleaned up by something else, only then throw
+                if (Core.GetAllTransientDbs().Contains(thisDbName))
+                {
+                    throw sqlException;
+                }
+            }   
         }
     }
 }

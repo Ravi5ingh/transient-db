@@ -2,6 +2,7 @@ using System;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using Dapper;
 using Shouldly;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace TransientDatabase.IntegrationTests
         [Fact]
         public void Create_MultipleInvokes_CreatesDifferentDbEachTime()
         {
-            var script = new FileInfo("TransientDbTests.sql");
+            var script = "TransientDbTests.sql";
 
             using(var transientDbConnection1 = TransientDb.Create(script))
             using(var transientDbConnection2 = TransientDb.Create(script))
@@ -63,7 +64,7 @@ namespace TransientDatabase.IntegrationTests
         [Fact]
         public void Create_SimpleCase_CleansUpDbOnDispose()
         {
-            using (var transientDbConnection = TransientDb.Create(new FileInfo("TransientDbTests.sql")))
+            using (var transientDbConnection = TransientDb.Create("TransientDbTests.sql"))
             {
                 var tables = Infra.GetAllTablesInDb(transientDbConnection.Connection);
 
@@ -76,6 +77,31 @@ namespace TransientDatabase.IntegrationTests
                 var transientDbNames = Infra.GetAllTransientDbs(sqlConnection);
                     
                 transientDbNames.ShouldBeEmpty();
+            }
+        }
+
+        [Fact]
+        public void Create_DontDisposeD_ShouldntDisposeDB()
+        {
+            var createdDbName = string.Empty;
+            
+            using (var transientDbConnection = TransientDb.Create("TransientDbTests.sql").DontDisposeOnCleanup())
+            {
+                var tables = Infra.GetAllTablesInDb(transientDbConnection.Connection);
+
+                tables.ShouldHaveSingleItem();
+                tables.First().ShouldBe("Persons");
+
+                createdDbName = Infra.GetDatabaseNameFromConnectionString(transientDbConnection.Connection.ConnectionString);
+            }
+            
+            using (var sqlConnection = new SqlConnection("Server=(LocalDb)\\MSSQLLocalDB"))
+            {
+                var transientDbNames = Infra.GetAllTransientDbs(sqlConnection);
+                    
+                transientDbNames.ShouldContain(createdDbName);
+
+                sqlConnection.Execute($"drop database {createdDbName}");
             }
         }
     }

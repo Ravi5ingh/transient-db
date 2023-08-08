@@ -27,4 +27,18 @@ public static class Infra
     {
         return sqlConnection.Query<string>("select table_name from information_schema.tables;").ToList();
     }
+    
+    /// <summary>
+    /// Get the DB name from any SQL connection string
+    /// </summary>
+    /// <param name="connectionString">SQL connection string</param>
+    /// <returns>The database name</returns>
+    internal static string GetDatabaseNameFromConnectionString(string connectionString)
+    {
+        return connectionString
+            .Split(";")
+            .First(seg => seg
+                .StartsWith("Database"))
+            .Substring(9);
+    }
 }
