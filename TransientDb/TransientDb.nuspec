@@ -2,17 +2,18 @@
 <package >
   <metadata>
     <id>TransientDb</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <title>TransientDb</title>
     <authors>Ravi Singh</authors>
+    <readme>docs\Readme.md</readme>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <!-- <icon>icon.png</icon> -->
+    <icon>pics\Icon.png</icon> 
     <projectUrl>https://github.com/Ravi5ingh/transient-db</projectUrl>
     <description>
       TransientDb is a lightweight, dynamic, runtime, code-only database which comes in handy whenever you need quick setup and teardown of an ephemeral database with a controlled starting state specified by SQL scripts. It is based on MS SQL Local DB.
     </description> 
-    <releaseNotes>Transient DB MDF files are now created in dedicated directory + namespace changes + added readme</releaseNotes>
+    <releaseNotes>Added Icon</releaseNotes>
     <copyright>Copyright © Ravi Singh 2023</copyright>
     <tags>Temporary Database SQL Transient Ephemeral Runtime Integration Testing</tags>
     <dependencies>
@@ -28,6 +29,7 @@
   </metadata>
   <files>
     <file src="bin\Release\net6.0\*.dll" target="lib\net6.0" />
-    <file src="bin\Release\net6.0\Readme.md" target="" />
+    <file src="Readme.md" target="docs\" />
+    <file src="Icon.png" target="pics\Icon.png" />
   </files>
 </package>

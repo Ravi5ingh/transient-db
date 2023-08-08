@@ -1,0 +1,18 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="400" fill="white"/>
+<ellipse cx="89.5" cy="142.471" rx="55.5" ry="9.52857" fill="#70A4D3"/>
+<rect x="34" y="74.5286" width="111" height="67.9429" fill="#70A4D3"/>
+<ellipse cx="89.5" cy="74.5286" rx="55.5" ry="9.52857" fill="#D9D9D9"/>
+<ellipse cx="200.5" cy="151.471" rx="55.5" ry="9.52857" fill="#70A4D3"/>
+<rect x="145" y="83.5286" width="111" height="67.9429" fill="#70A4D3"/>
+<ellipse cx="200.5" cy="83.5286" rx="55.5" ry="9.52857" fill="#D9D9D9"/>
+<ellipse cx="311.5" cy="161.471" rx="55.5" ry="9.52857" fill="#70A4D3"/>
+<rect x="256" y="93.5286" width="111" height="67.9429" fill="#70A4D3"/>
+<ellipse cx="311.5" cy="93.5286" rx="55.5" ry="9.52857" fill="#D9D9D9"/>
+<path d="M132 335.5V161H246.5L269 188.5V335.5H132Z" fill="#70A4D3" stroke="black"/>
+<line x1="149" y1="209.5" x2="247" y2="209.5" stroke="black"/>
+<line x1="149" y1="231.5" x2="247" y2="231.5" stroke="black"/>
+<line x1="149" y1="253.5" x2="247" y2="253.5" stroke="black"/>
+<line x1="149" y1="275.5" x2="247" y2="275.5" stroke="black"/>
+<path d="M246.5 161.5V188H268" stroke="black"/>
+</svg>
